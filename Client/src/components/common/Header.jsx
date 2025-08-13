@@ -657,7 +657,7 @@ const Header = () => {
                     className="flex items-center space-x-2 p-3 hover:bg-amber-100/70 rounded-full transition-all duration-300 group text-amber-800"
                   >
                     <div className="w-8 h-8 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full flex items-center justify-center text-white font-semibold text-sm">
-                      {user?.firstName?.charAt(0) || 'U'}
+                      {user?.user_first_name?.charAt(0) || 'U'}
                     </div>
                   </button>
 

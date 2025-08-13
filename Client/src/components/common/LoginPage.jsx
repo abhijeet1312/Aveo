@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 // import { setUser } from '../redux/slices/userSlice';
 import { Leaf, Eye, EyeOff, Mail, Lock, User, Phone, MapPin, ArrowRight, Shield, Heart, Sparkles } from 'lucide-react';
+import { setUser } from '../../redux/slices/userSlice';
 
 // Login Page Component
 const LoginPage = () => {
@@ -25,21 +26,33 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
+    try {
+      const response = await fetch('https://aveo-8pm2.onrender.com/api/login', { // Replace with your actual API endpoint
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          user_email: formData.email,
+          user_password: formData.password
+        })
+      });
 
-    // Simulate API call
-    setTimeout(() => {
-      dispatch(setUser({
-        id: 1,
-        email: formData.email,
-        firstName: 'John',
-        lastName: 'Doe',
-        phone: '+91 9876543210',
-        address: 'Mumbai, India'
-      }));
-      navigate('/');
-      setIsLoading(false);
-    }, 1500);
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+
+      const data = await response.json();
+
+      console.log(data);
+
+      dispatch(setUser(data.user)); // Dispatching the user data to the Redux store
+
+      navigate('/')
+      return data;
+    } catch (error) {
+      throw new Error(error.message || 'Network error occurred');
+    }
   };
 
   return (
