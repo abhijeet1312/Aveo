@@ -6,6 +6,7 @@ import { Minus, Plus, Trash2 } from 'lucide-react';
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
 
+  console.log('CartItem rendered:', item);
   const handleIncrement = () => {
     dispatch(incrementQuantity({ productId: item.id }));
   };
@@ -50,7 +51,7 @@ const CartItem = ({ item }) => {
       </div>
 
       <div className="text-right">
-        <p className="font-bold text-lg">${item.totalPrice.toFixed(2)}</p>
+        <p className="font-bold text-lg">${item.totalPrice}</p>
         <button
           onClick={handleRemove}
           className="text-red-500 hover:text-red-700 transition-colors mt-1"

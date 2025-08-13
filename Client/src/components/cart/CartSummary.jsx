@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 const CartSummary = () => {
   const { totalAmount, shipping, tax, discount, finalTotal } = useSelector(state => state.cart);
 
+  console.log(totalAmount, shipping, tax, discount, finalTotal);
+
   return (
     <div className="bg-white rounded-xl shadow-lg p-6">
       <h3 className="text-xl font-bold mb-6">Order Summary</h3>
@@ -13,7 +15,7 @@ const CartSummary = () => {
       <div className="space-y-3">
         <div className="flex justify-between">
           <span>Subtotal</span>
-          <span>${totalAmount.toFixed(2)}</span>
+          <span>${totalAmount}</span>
         </div>
         
         <div className="flex justify-between">

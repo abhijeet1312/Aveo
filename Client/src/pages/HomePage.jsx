@@ -1624,15 +1624,15 @@ const HomePage = () => {
             <h3 className="font-bold text-lg text-gray-900 mb-2">{product.name}</h3>
             <p className="text-gray-600 text-sm mb-3">{product.description}</p>
             
-            <div className="flex items-center space-x-2 mb-3">
+            {/* <div className="flex items-center space-x-2 mb-3">
               <span className="text-sm text-gray-500">({product.reviews} reviews)</span>
-            </div>
+            </div> */}
 
             <div className="flex items-center space-x-2 mb-4">
               <span className="text-2xl font-bold text-amber-700">₹{product.price}</span>
-              {product.originalPrice && (
+              {/* {product.originalPrice && (
                 <span className="text-lg text-gray-500 line-through">₹{product.originalPrice}</span>
-              )}
+              )} */}
             </div>
 
             {/* <div className="flex items-center space-x-2 mb-4">
@@ -1670,15 +1670,15 @@ const HomePage = () => {
             ) : (
               <button
                 onClick={handleAddToCart}
-                disabled={product.inStock === 0}
-                className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 z-10 ${
-                  product.inStock > 0
-                    ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white hover:from-amber-700 hover:to-orange-700 shadow-lg hover:shadow-xl'
-                    : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                // disabled={product.inStock === 0}
+                className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 z-10 
+                   bg-gradient-to-r from-amber-600 to-orange-600 text-white hover:from-amber-700 hover:to-orange-700 shadow-lg hover:shadow-xl'
+                    
                 }`}
               >
                 <ShoppingCart className="w-5 h-5" />
-                <span>{product.inStock > 0 ? 'Add to Cart' : 'Out of Stock'}</span>
+                {/* <span>{product.inStock > 0 ? 'Add to Cart' : 'Out of Stock'}</span> */}
+                <span>Add to Cart</span>
               </button>
             )}
           </div>
@@ -1774,7 +1774,10 @@ const HomePage = () => {
           className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {petCareProducts.slice(0, 3).concat(ecoLivingProducts.slice(0, 2)).map((product) => (
+          {/* {petCareProducts.slice(0, 3).concat(ecoLivingProducts.slice(0, 2)).map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))} */}
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
@@ -1815,7 +1818,10 @@ const HomePage = () => {
           className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {petCareProducts.map((product) => (
+          {/* {petCareProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))} */}
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
@@ -1856,7 +1862,10 @@ const HomePage = () => {
           className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {ecoLivingProducts.map((product) => (
+          {/* {ecoLivingProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))} */}
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>
@@ -1897,7 +1906,10 @@ const HomePage = () => {
           className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {fitnessProducts.map((product) => (
+          {/* {fitnessProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))} */}
+          {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
         </div>

@@ -226,9 +226,9 @@ const ProductCard = ({ product }) => {
 
           <div className="flex items-center space-x-2 mb-4">
             <span className="text-2xl font-bold text-green-600">${product.price}</span>
-            {product.originalPrice && (
+            {/* {product.originalPrice && (
               <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
-            )}
+            )} */}
           </div>
 
           {/* <div className="flex items-center space-x-2 mb-4">
@@ -267,14 +267,13 @@ const ProductCard = ({ product }) => {
             <button
               onClick={handleAddToCart}
               disabled={product.inStock === 0}
-              className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 z-10 ${
-                product.inStock > 0
-                  ? 'bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:from-green-700 hover:to-emerald-700'
-                  : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              className={`w-full py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 z-10 
+                bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:from-green-700 hover:to-emerald-700'
+                
               }`}
             >
               <ShoppingCart className="w-5 h-5" />
-              <span>{product.inStock > 0 ? 'Add to Cart' : 'Out of Stock'}</span>
+              <span> Add to Cart</span>
             </button>
           )}
         </div>

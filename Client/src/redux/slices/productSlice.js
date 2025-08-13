@@ -324,31 +324,28 @@ export const fetchCJProducts = createAsyncThunk(
       // );
 
       const res = await axios.get(
-        `https://developers.cjdropshipping.com/api2.0/v1/product/list?pageNum=1&pageSize=40`, // Query parameters
-        {
-          headers: {
-            "CJ-Access-Token": "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyNjc3OSIsInR5cGUiOiJBQ0NFU1NfVE9LRU4iLCJzdWIiOiJicUxvYnFRMGxtTm55UXB4UFdMWnlyVS9QOHBDNFVhZEFNbGFYTWt6YXN4c2gyZHhVK2xmb0VlUlZDK1YvRWF2NU5YRUszWjA4KzFWanBoSGI5cUNuejNKY2JROTRmS05ueVR4N1VVNmJLcUEwbGsxc1Q5SGpiajVhRlZhR1psRXk3Wmc1bXdEeTd2TVNWbmNLM3RFNHRhSzRyQzB3VElldUNIeXlvV3hLQ0xHZkJxTENFSkRTWFJvT0VmSDh3TjlZZUY3ZjhERlR0QzBvbENnZ2RMNkl3WURNWXFzRm9sWElnMEdtQm1CbUNIYitKc2E4ejkwS1VTS013YThlQUUrSW41cEVCWEkyaE56bDQ0bkF5QWdXeHdQKzZPK2tFZlN0aTN4cjJwanNDUkh1Z1FGN0hUU3l1dDhoTHBLT21OMCIsImlhdCI6MTc1NTA4NTQ1Mn0.MToLhN6N7ssjKuuM5FFHlvLQvYgcr5jtCuNnkSQz74w",
-            "Content-Type": "application/json"
-          }
-        }
+        `https://aveo-8pm2.onrender.com/api/cj-products`, // Query parameters
+        
       );
 
       console.log("CJ API Response:", res.data);
 
       // Map CJ API response to your product structure
-      return res.data.data.map((item) => ({
-        id: item.id,
-        name: item.nameEn,
+      const mappedProducts = res.data.data.list.map((item) => ({
+        id: item.pid,
+        name: item.productNameEn,
         category: item.categoryName || "general",
         price: item.sellPrice,
         originalPrice: item.originalPrice || item.sellPrice,
         image: item.productImage,
-        rating: 4.5, // CJ may not have ratings
-        reviews: 0,  // CJ may not have reviews
+        rating: 4.5,
+        reviews: 0,
         badge: "New",
         description: item.descriptionEn,
         inStock: item.inventory || 0
       }));
+      console.log("Mapped Products:", mappedProducts);
+      return mappedProducts;
     } catch (err) {
       return rejectWithValue(err.response?.data || err.message);
     }
