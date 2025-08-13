@@ -45,7 +45,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   favorites: [],
   user: null,
-  isAuthenticated: true,
+  isAuthenticated: false,
   authLoading: false,
   authError: null
 };

@@ -24,9 +24,9 @@
 // export default App
 
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { Provider, useDispatch } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Toaster } from 'react-hot-toast';
 import { store, persistor } from './redux/store';
@@ -42,6 +42,9 @@ import SignupPage from './components/common/SignupPage';
 // import './styles/globals.css';
 
 function App() {
+
+
+  
   return (
     <Provider store={store}>
       <PersistGate loading={<div className="min-h-screen flex items-center justify-center">Loading...</div>} persistor={persistor}>

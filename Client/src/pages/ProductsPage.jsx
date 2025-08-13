@@ -274,7 +274,7 @@ const ProductsPage = () => {
               </div>
 
               {/* Rating Filter */}
-              <div className="mb-6">
+              {/* <div className="mb-6">
                 <h3 className="font-semibold mb-3">Minimum Rating</h3>
                 <div className="space-y-2">
                   {[4, 3, 2, 1].map(rating => (
@@ -299,50 +299,9 @@ const ProductsPage = () => {
                     </button>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
-              {/* Badge Filters */}
-              <div className="mb-6">
-                <h3 className="font-semibold mb-3">Product Tags</h3>
-                <div className="flex flex-wrap gap-2">
-                  {badges.map(badge => (
-                    <button
-                      key={badge}
-                      onClick={() => handleBadgeFilter(badge)}
-                      className={`transition-all duration-200 ${
-                        selectedBadges.includes(badge) ? 'ring-2 ring-green-500' : ''
-                      }`}
-                    >
-                      <Badge type={getBadgeType(badge)}>
-                        {badge}
-                      </Badge>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Quick Stats */}
-              <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg p-4">
-                <h3 className="font-semibold mb-2 text-green-800">Collection Stats</h3>
-                <div className="space-y-2 text-sm">
-                  <div className="flex justify-between">
-                    <span className="text-green-700">Total Products</span>
-                    <span className="font-medium">{filteredAndSortedProducts.length}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-green-700">Eco-Friendly</span>
-                    <span className="font-medium">
-                      {products.filter(p => p.badge === 'Eco-Friendly').length}
-                    </span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-green-700">Avg. Rating</span>
-                    <span className="font-medium">
-                      {(products.reduce((sum, p) => sum + p.rating, 0) / products.length).toFixed(1)} ★
-                    </span>
-                  </div>
-                </div>
-              </div>
+             
             </div>
           </div>
 
