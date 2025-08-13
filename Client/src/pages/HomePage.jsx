@@ -14,10 +14,10 @@ const HomePage = () => {
   const fitnessRef = useRef(null);
   const dispatch = useDispatch();
 
-  const {products} = useSelector(state => state.products);
+  const { products } = useSelector(state => state.products);
   const { addItemToCart, incrementItemQuantity, decrementItemQuantity, getItemQuantity } = useCart();
 
- 
+
 
   useEffect(() => {
     // Fetch products when app loads
@@ -297,7 +297,7 @@ const HomePage = () => {
       addItemToCart(product);
     };
 
-    
+
 
     const handleIncrement = (e) => {
       e.preventDefault();
@@ -321,12 +321,11 @@ const HomePage = () => {
               className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
             />
             <div className="absolute top-4 left-4">
-              <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
-                product.badge === 'Eco-Friendly' ? 'bg-amber-100 text-amber-800' :
-                product.badge === 'Premium' ? 'bg-purple-100 text-purple-800' :
-                product.badge === 'Best Seller' ? 'bg-orange-100 text-orange-800' :
-                'bg-blue-100 text-blue-800'
-              }`}>
+              <span className={`px-3 py-1 text-xs font-semibold rounded-full ${product.badge === 'Eco-Friendly' ? 'bg-amber-100 text-amber-800' :
+                  product.badge === 'Premium' ? 'bg-purple-100 text-purple-800' :
+                    product.badge === 'Best Seller' ? 'bg-orange-100 text-orange-800' :
+                      'bg-blue-100 text-blue-800'
+                }`}>
                 {product.badge}
               </span>
             </div>
@@ -347,11 +346,11 @@ const HomePage = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="p-6">
             <h3 className="font-bold text-lg text-gray-900 mb-2">{product.name}</h3>
             <p className="text-gray-600 text-sm mb-3">{product.description}</p>
-            
+
             {/* <div className="flex items-center space-x-2 mb-3">
               <span className="text-sm text-gray-500">({product.reviews} reviews)</span>
             </div> */}
@@ -382,9 +381,9 @@ const HomePage = () => {
                   >
                     <Minus className="w-4 h-4 text-amber-700" />
                   </button>
-                  
+
                   <span className="w-8 text-center font-semibold text-amber-800">{quantity}</span>
-                  
+
                   <button
                     onClick={handleIncrement}
                     className="w-8 h-8 rounded-full bg-amber-100 hover:bg-amber-200 flex items-center justify-center transition-colors z-10"
@@ -392,7 +391,7 @@ const HomePage = () => {
                     <Plus className="w-4 h-4 text-amber-700" />
                   </button>
                 </div>
-                
+
                 <span className="text-amber-700 font-semibold">In Cart</span>
               </div>
             ) : (
@@ -427,17 +426,16 @@ const HomePage = () => {
       {heroSlides.map((slide, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? 'opacity-100' : 'opacity-0'
-          }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
         >
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center"
             style={{ backgroundImage: `url(${slide.image})` }}
           >
             {/* <div className="absolute inset-0 bg-gradient-to-r from-amber-900/70 via-orange-900/50 to-transparent"></div> */}
           </div>
-          
+
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
             <div className="text-white max-w-2xl">
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
@@ -454,16 +452,15 @@ const HomePage = () => {
           </div>
         </div>
       ))}
-      
+
       {/* Slide Indicators */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
         {heroSlides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-colors ${
-              index === currentSlide ? 'bg-white' : 'bg-white/50'
-            }`}
+            className={`w-3 h-3 rounded-full transition-colors ${index === currentSlide ? 'bg-white' : 'bg-white/50'
+              }`}
           />
         ))}
       </div>
@@ -471,67 +468,67 @@ const HomePage = () => {
   );
 
   const FeaturedProducts = () => {
-  const scrollInterval = 1800; // 3 seconds per scroll
-  const scrollAmount = 320; // match your manual scroll step
+    const scrollInterval = 1800; // 3 seconds per scroll
+    const scrollAmount = 320; // match your manual scroll step
 
-  // Auto-scroll logic
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (featuredCarouselRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = featuredCarouselRef.current;
+    // Auto-scroll logic
+    useEffect(() => {
+      const interval = setInterval(() => {
+        if (featuredCarouselRef.current) {
+          const { scrollLeft, scrollWidth, clientWidth } = featuredCarouselRef.current;
 
-        // If we're near the end, go back to the start
-        if (scrollLeft + clientWidth >= scrollWidth - 10) {
-          featuredCarouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          featuredCarouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          // If we're near the end, go back to the start
+          if (scrollLeft + clientWidth >= scrollWidth - 10) {
+            featuredCarouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            featuredCarouselRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          }
         }
-      }
-    }, scrollInterval);
+      }, scrollInterval);
 
-    return () => clearInterval(interval);
-  }, []);
+      return () => clearInterval(interval);
+    }, []);
 
-  return (
-    <section className="py-16" style={{ backgroundColor: '#f9e8dc' }}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <p className="text-sm text-amber-700 mb-2">Best in Home & Living</p>
-            <h2 className="text-3xl font-bold text-amber-900">
-              Warm, <span className="text-orange-700">Natural</span>, <span className="border-b-4 border-amber-500">Premium</span>
-            </h2>
+    return (
+      <section className="py-16" style={{ backgroundColor: '#f9e8dc' }}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <p className="text-sm text-amber-700 mb-2">Best in Home & Living</p>
+              <h2 className="text-3xl font-bold text-amber-900">
+                Warm, <span className="text-orange-700">Natural</span>, <span className="border-b-4 border-amber-500">Premium</span>
+              </h2>
+            </div>
+
+            <div className="flex space-x-2">
+              <button
+                onClick={() => scrollCarousel(featuredCarouselRef, 'left')}
+                className="p-2 bg-white border border-amber-200 rounded-full hover:bg-amber-50 transition-colors"
+              >
+                <ChevronLeft className="w-5 h-5 text-amber-700" />
+              </button>
+              <button
+                onClick={() => scrollCarousel(featuredCarouselRef, 'right')}
+                className="p-2 bg-white border border-amber-200 rounded-full hover:bg-amber-50 transition-colors"
+              >
+                <ChevronRight className="w-5 h-5 text-amber-700" />
+              </button>
+            </div>
           </div>
-          
-          <div className="flex space-x-2">
-            <button
-              onClick={() => scrollCarousel(featuredCarouselRef, 'left')}
-              className="p-2 bg-white border border-amber-200 rounded-full hover:bg-amber-50 transition-colors"
-            >
-              <ChevronLeft className="w-5 h-5 text-amber-700" />
-            </button>
-            <button
-              onClick={() => scrollCarousel(featuredCarouselRef, 'right')}
-              className="p-2 bg-white border border-amber-200 rounded-full hover:bg-amber-50 transition-colors"
-            >
-              <ChevronRight className="w-5 h-5 text-amber-700" />
-            </button>
+
+          <div
+            ref={featuredCarouselRef}
+            className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          >
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </div>
         </div>
-
-        <div 
-          ref={featuredCarouselRef}
-          className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+      </section>
+    );
+  };
 
   // const FeaturedProducts = () => (
   //   <section className="py-16" style={{ backgroundColor: '#f9e8dc' }}>
@@ -543,7 +540,7 @@ const HomePage = () => {
   //             Warm, <span className="text-orange-700">Natural</span>, <span className="border-b-4 border-amber-500">Premium</span>
   //           </h2>
   //         </div>
-          
+
   //         <div className="flex space-x-2">
   //           <button
   //             onClick={() => scrollCarousel(featuredCarouselRef, 'left')}
@@ -576,7 +573,31 @@ const HomePage = () => {
   //   </section>
   // );
 
-  const PetCareSection = () => (
+  const PetCareSection = () => {
+
+    const scrollInterval = 1800; // 3 seconds per scroll
+    const scrollAmount = 320; // match your manual scroll step
+
+    // Auto-scroll logic
+    useEffect(() => {
+      const interval = setInterval(() => {
+        if (petCareRef.current) {
+          const { scrollLeft, scrollWidth, clientWidth } = petCareRef.current;
+
+          // If we're near the end, go back to the start
+          if (scrollLeft + clientWidth >= scrollWidth - 10) {
+            petCareRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            petCareRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          }
+        }
+      }, scrollInterval);
+
+      return () => clearInterval(interval);
+    }, []);
+    return(
+
+    
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between mb-8">
@@ -587,7 +608,7 @@ const HomePage = () => {
             </h2>
             <p className="text-amber-700 mt-2">Eco-friendly products that keep your pets happy and healthy</p>
           </div>
-          
+
           <div className="flex space-x-2">
             <button
               onClick={() => scrollCarousel(petCareRef, 'left')}
@@ -604,7 +625,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div 
+        <div
           ref={petCareRef}
           className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -619,6 +640,8 @@ const HomePage = () => {
       </div>
     </section>
   );
+  }
+    
 
   const EcoLivingSection = () => (
     <section className="py-16" style={{ backgroundColor: '#f9e8dc' }}>
@@ -631,7 +654,7 @@ const HomePage = () => {
             </h2>
             <p className="text-amber-700 mt-2">Sustainable alternatives for everyday living</p>
           </div>
-          
+
           <div className="flex space-x-2">
             <button
               onClick={() => scrollCarousel(ecoLivingRef, 'left')}
@@ -648,7 +671,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div 
+        <div
           ref={ecoLivingRef}
           className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -675,7 +698,7 @@ const HomePage = () => {
             </h2>
             <p className="text-amber-700 mt-2">Eco-friendly fitness equipment for a healthier you and planet</p>
           </div>
-          
+
           <div className="flex space-x-2">
             <button
               onClick={() => scrollCarousel(fitnessRef, 'left')}
@@ -692,7 +715,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div 
+        <div
           ref={fitnessRef}
           className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -718,7 +741,7 @@ const HomePage = () => {
               Curated for <span className="border-b-4 border-amber-500">Thoughtful</span> Homes
             </h2>
           </div>
-          
+
           <div className="flex space-x-2">
             <button
               onClick={() => scrollCarousel(categoryCarouselRef, 'left')}
@@ -735,7 +758,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        <div 
+        <div
           ref={categoryCarouselRef}
           className="flex space-x-6 overflow-x-auto scrollbar-hide scroll-smooth"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
@@ -749,7 +772,7 @@ const HomePage = () => {
                   className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-amber-900/70 via-amber-900/30 to-transparent"></div>
-                
+
                 <div className="absolute bottom-6 left-6 text-white">
                   <h3 className="text-xl font-bold mb-1">{category.title}</h3>
                   <p className="text-sm text-white/90 mb-1">{category.subtitle}</p>
@@ -813,7 +836,7 @@ const HomePage = () => {
                   className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-amber-900/70 via-amber-900/30 to-transparent"></div>
-                
+
                 <div className="absolute bottom-4 left-4 text-white">
                   <h3 className="font-bold mb-1">{item.title}</h3>
                   <p className="text-xs text-white/90">{item.subtitle}</p>
@@ -827,7 +850,7 @@ const HomePage = () => {
     </section>
   );
 
-const ValueProposition = () => (
+  const ValueProposition = () => (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -851,7 +874,7 @@ const ValueProposition = () => (
             </div>
             <h3 className="text-2xl font-bold text-amber-900 mb-4">100% Eco-Friendly</h3>
             <p className="text-amber-700 leading-relaxed">
-              Every product is crafted from sustainable, renewable materials. We're carbon-neutral 
+              Every product is crafted from sustainable, renewable materials. We're carbon-neutral
               certified and committed to protecting our planet for future generations.
             </p>
           </div>
@@ -867,7 +890,7 @@ const ValueProposition = () => (
             </div>
             <h3 className="text-2xl font-bold text-amber-900 mb-4">Premium Quality</h3>
             <p className="text-amber-700 leading-relaxed">
-              Rigorously tested products that combine sustainability with exceptional durability. 
+              Rigorously tested products that combine sustainability with exceptional durability.
               Each item comes with our lifetime eco-guarantee promise.
             </p>
           </div>
@@ -883,7 +906,7 @@ const ValueProposition = () => (
             </div>
             <h3 className="text-2xl font-bold text-amber-900 mb-4">Global Shipping</h3>
             <p className="text-amber-700 leading-relaxed">
-              Free carbon-neutral shipping across UAE. Fast, reliable delivery to India, 
+              Free carbon-neutral shipping across UAE. Fast, reliable delivery to India,
               Southeast Asia, and 50+ countries worldwide with eco-friendly packaging.
             </p>
           </div>

@@ -546,6 +546,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setSearchQuery } from '../../redux/slices/productSlice';
 import { logout } from '../../redux/slices/userSlice';
 import { ShoppingCart, Search, Menu, X, Heart, User, Leaf, LogOut, Settings, Package } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -569,6 +570,7 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(logout());
     setShowUserDropdown(false);
+    toast.success('Logged out successfully');
     navigate('/');
   };
 
